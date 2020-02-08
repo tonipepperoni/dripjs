@@ -11,7 +11,7 @@ export class Orderbook {
   constructor(private readonly ws: WebsocketInsider) {}
 
   orderbookL2T25$(pair?: string | string[]): Observable<OrderbookL2Response> {
-    const channel = getChannelName({ pair, endPoint: PublicEndPoints.OrderBookL2T25 });
+    const channel = getChannelName({ pair, endPoint: PublicEndPoints.OrderBookL2 });
 
     return transformSourceData({
       source$: this.ws.subscribe<OrderbookResponse>(channel),
@@ -21,7 +21,7 @@ export class Orderbook {
   }
 
   stopOrderbookL2T25(pair?: string | string[]): void {
-    const channel = getChannelName({ pair, endPoint: PublicEndPoints.OrderBookL2T25 });
+    const channel = getChannelName({ pair, endPoint: PublicEndPoints.OrderBookL2 });
     this.ws.unsubscribe(channel);
   }
 }
